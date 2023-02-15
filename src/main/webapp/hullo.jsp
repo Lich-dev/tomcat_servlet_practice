@@ -9,7 +9,6 @@
 <h1><%= "Hello World!" %>
 </h1>
 <br/>
-<a href="hello-servlet">Hello Servlet</a><br>
-<a href="example-servlet">Example Servlet</a>
+<a href="hello-servlet">Custom Servlet</a>
 </body>
 </html>
