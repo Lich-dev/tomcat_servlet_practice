@@ -10,6 +10,9 @@
 </h1>
 <br/>
 <a href="hello-servlet">Hello Servlet</a><br>
-<a href="example-servlet">Example Servlet</a>
+<a href="example-servlet">Example Servlet</a><br/>
+<a href="index.html">index</a><br/>
+<a href="parameter-servlet?key=value&otherkey=othervalue">parameters</a><br/>
+<!--add slash at beggining for absolute position rather than relative -->
 </body>
 </html>
