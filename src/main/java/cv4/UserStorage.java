@@ -12,13 +12,19 @@ public class UserStorage {
                 return false;
             }
         }
-        if(/*user.email.contains("@") && user.email.contains(".") &&*/
-                user.password.length()>5
-                && user.age>18){
-            registeredUsers.add(user);
-            return true;
-        }else{
-            return false;
+        registeredUsers.add(user);
+        return true;
+    }
+    public static User loginUser(String email, String password){
+        for (User registeredUser : registeredUsers) {
+            if (Objects.equals(registeredUser.email, email)) {
+                if (Objects.equals(registeredUser.password,password)){
+                    return registeredUser;
+                }else{
+                    return null;
+                }
+            }
         }
+        return null;
     }
 }
