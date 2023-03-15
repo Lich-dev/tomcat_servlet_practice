@@ -38,30 +38,13 @@ public class LoginServlet extends HttpServlet {
         out.println("<h1>" + "Login Result" + "</h1>");
 
         String email = request.getParameter("email");
-        String password = request.getParameter("password");
+        String password = request.getParameter("password1");
 
-        List<String> validationViolations = new ArrayList<>();
-        if (!password.matches(REG_EX_PASSWORD)){
-            validationViolations.add("invalid password!");
-        }
-        if (!email.matches(REG_EX_EMAIL)){
-            validationViolations.add("invalid email!");
-        }
-
-        if (validationViolations.isEmpty()){//todo fix this
-            User user = UserStorage.loginUser(email, password);
-            if (user != null){
-                out.println("<h4>Welcome "+user.getFullName()+"</h4>");
-            }else {
-                out.println("<h4>incorrect password or email!</h4>");
-            }
+        User user = UserStorage.loginUser(email, password);
+        if (user != null){
+            out.println("<h4>Welcome "+user.getFullName()+"</h4>");
         }else {
-            out.println("<ul>");
-            for (String violation :
-                    validationViolations) {
-                out.println("<li>"+violation+"</li>");
-            }
-            out.println("</ul>");
+            out.println("<h4>incorrect password or email!</h4>");
         }
 
         out.println("<a href=\"index.html\">Domů</a>");
