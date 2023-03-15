@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -22,36 +23,37 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
-        // Set refresh, autoload time as n seconds
-        // (It refreshes the browser every second)
-        //response.setIntHeader("Refresh", 1);
-
-        PrintWriter out = response.getWriter();
-        out.println("<!DOCTYPE html>");
-        out.println("<html lang=\"en\">");
-        out.println("<head><meta charset=\"UTF-8\"><title>");
-        // Browser bookmark title
-        out.println("Login");
-        out.println("</title></head><body>");
-
-        // Add a page body
-        out.println("<h1>" + "Login Result" + "</h1>");
-
         String email = request.getParameter("email");
         String password = request.getParameter("password1");
 
         User user = UserStorage.loginUser(email, password);
         if (user != null){
-            out.println("<h4>Welcome "+user.getFullName()+"</h4>");
+            HttpSession session = request.getSession();//if input false, only ask, dont create
+            session.setAttribute("email",email);//for security reasons, it should be an ID
+            session.setAttribute("user",user.getFullName());
+
+            //session.setMaxInactiveInterval(60);
+
+            response.sendRedirect("/pages/home.jsp");
         }else {
+            PrintWriter out = response.getWriter();
+            out.println("<!DOCTYPE html>");
+            out.println("<html lang=\"en\">");
+            out.println("<head><meta charset=\"UTF-8\"><title>");
+            // Browser bookmark title
+            out.println("Login");
+            out.println("</title></head><body>");
+
+            // Add a page body
+            out.println("<h1>" + "Login Result" + "</h1>");
             out.println("<h4>incorrect password or email!</h4>");
+
+            out.println("<a href=\"index.html\">Domů</a>");
+
+            // End of HTML page
+            out.println("</body></html>");
+            // Close stream object
+            out.close();
         }
-
-        out.println("<a href=\"index.html\">Domů</a>");
-
-        // End of HTML page
-        out.println("</body></html>");
-        // Close stream object
-        out.close();
     }
 }

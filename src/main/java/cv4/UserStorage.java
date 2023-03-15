@@ -27,4 +27,20 @@ public class UserStorage {
         }
         return null;
     }
+    public static User getUser(String email){
+        for (User registeredUser : registeredUsers) {
+            if (Objects.equals(registeredUser.email, email)) {
+                return registeredUser;
+            }
+        }
+        return null;
+    }
+    /*private static boolean userExists(String email){
+        for (User registeredUser : registeredUsers) {
+            if (Objects.equals(registeredUser.email, email)) {
+                return true;
+            }
+        }
+        return false;
+    }*///kinda useless
 }
