@@ -11,7 +11,7 @@
     
     <servlet><!--alternativa @webservlet pred classou-->
         <servlet-name>HelloServlet</servlet-name>
-        <servlet-class>com.prg3.prg31.HelloServlet</servlet-class>
+        <servlet-class>cv1a2.HelloServlet</servlet-class>
     </servlet>
 
     <welcome-file-list><!--Poradi zobrazeni-->

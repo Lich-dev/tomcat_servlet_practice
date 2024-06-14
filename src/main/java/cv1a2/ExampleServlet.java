@@ -1,4 +1,4 @@
-package com.prg3.prg31;
+package cv1a2;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
